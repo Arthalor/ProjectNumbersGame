@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df173d4610d6b394e86383b622eff90f, type: 3}
+  m_Name: StandardBallSettings
+  m_EditorClassIdentifier: 
+  ballSizeSpriteList:
+  - tier: 0
+    info:
+      sprite: {fileID: -461403680, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 1
+  - tier: 1
+    info:
+      sprite: {fileID: 1735385953, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 1.3
+  - tier: 2
+    info:
+      sprite: {fileID: -1866532880, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 1.9
+  - tier: 3
+    info:
+      sprite: {fileID: 1189850904, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 2.2
+  - tier: 4
+    info:
+      sprite: {fileID: 356382962, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 2.7
+  - tier: 5
+    info:
+      sprite: {fileID: 564810621, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 3.5
+  - tier: 6
+    info:
+      sprite: {fileID: 626430041, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 4
+  - tier: 7
+    info:
+      sprite: {fileID: 1094275864, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 4.9
+  - tier: 8
+    info:
+      sprite: {fileID: 645013815, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 5.4
+  - tier: 9
+    info:
+      sprite: {fileID: 766581709, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 6.8
+  - tier: 10
+    info:
+      sprite: {fileID: 1712745259, guid: f1207fe692190e546aa9697df7339afc, type: 3}
+      size: 8
