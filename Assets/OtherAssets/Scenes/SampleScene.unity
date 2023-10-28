@@ -557,7 +557,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -180233452940277706, guid: 24e0e875d5e402f41a7849ec14aae4d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -598,8 +598,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  bounds: {x: -3.16, y: 3.16}
   maxSpawnTier: 4
-  spawnPoint: {fileID: 1592663806}
+  replenishTimer:
+    maxTime: 0.5
+  dropPoint: {fileID: 1592663806}
+  nextBallPoint: {fileID: 731267891}
   ball: {fileID: 2372712479872220201, guid: 589fac9c9f8e4154d8b95f94b012667d, type: 3}
 --- !u!1 &731267890
 GameObject:
@@ -626,7 +630,7 @@ Transform:
   m_GameObject: {fileID: 731267890}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.54, z: 0}
+  m_LocalPosition: {x: 4.41, y: 2.47, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

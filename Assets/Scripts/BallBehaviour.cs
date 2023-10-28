@@ -72,4 +72,10 @@ public class BallBehaviour : MonoBehaviour
 		Destroy(otherBall);
 		Destroy(gameObject);
 	}
+
+	public void FreezeBall(bool value) 
+	{
+        GetComponent<Rigidbody2D>().bodyType = value ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
+        GetComponent<Collider2D>().enabled = !value;
+    }
 }
