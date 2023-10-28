@@ -33,9 +33,14 @@ public class DropperBehaviour : MonoBehaviour
             dropBall.position = dropPoint.position;
         Move();
 
-        if (Input.GetButtonDown("Fire1") && !ballDropped) 
+        if (ballDropped) return;
+        if (Input.GetButtonDown("Fire1"))
         {
             DropBall();
+        }
+        else if (Input.GetButtonDown("Fire2")) 
+        {
+            SwapBalls();
         }
     }
 
