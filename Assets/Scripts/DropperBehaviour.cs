@@ -15,6 +15,7 @@ public class DropperBehaviour : MonoBehaviour
     private Transform dropBall;
     private Transform nextBall; 
     [SerializeField] private GameObject ball;
+    [SerializeField] private GameAndUIManager gameAndUIManager;
 
     private float ballSizeOffset;
 
@@ -69,11 +70,10 @@ public class DropperBehaviour : MonoBehaviour
 
     private Transform SpawnBallFrozen(int tier, Vector3 position) 
     {
-        Vector3 noise = Vector3.one * Random.Range(0, 0.001f);
-        noise = new Vector3(noise.x, noise.y, 1);
-        GameObject spawnedBall = Instantiate(ball, position + noise, Quaternion.identity);
-        spawnedBall.GetComponent<BallBehaviour>().SetTier(tier);
-        spawnedBall.GetComponent<BallBehaviour>().FreezeBall(true);
+        GameObject spawnedBall = Instantiate(ball, position, Quaternion.identity);
+        BallBehaviour _ballBehaviour = spawnedBall.GetComponent<BallBehaviour>();
+        _ballBehaviour.SetTier(tier);
+        _ballBehaviour.FreezeBall(true);
         return spawnedBall.transform;
     }
 

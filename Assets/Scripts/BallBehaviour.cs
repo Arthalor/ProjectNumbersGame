@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class BallBehaviour : MonoBehaviour
 {
@@ -11,8 +7,9 @@ public class BallBehaviour : MonoBehaviour
 	[SerializeField] private GameObject ballObject;
 	[SerializeField] private BallSettings ballSettings;
 	[SerializeField] private float scaleFactor;
+	private bool collidedOnce = false;
 
-    private Dictionary<int, SpriteAndSizeInfo> generatedTierInfoDict = new();
+	private Dictionary<int, SpriteAndSizeInfo> generatedTierInfoDict = new();
 
 	void Start()
 	{
@@ -34,15 +31,12 @@ public class BallBehaviour : MonoBehaviour
 		transform.localScale = Vector2.one * generatedTierInfoDict[tier].size * scaleFactor;
     }
 
-    [ContextMenu("InitializeFromTier")]
-    void EditorInitalizeTier() 
+	public bool HasCollidedAtLeastOnce() 
 	{
-		if(generatedTierInfoDict.Count <= 0)
-			InitializeDictionary();
-		InitializeFromTier();
+		return collidedOnce;
 	}
 
-	public int GetTier() 
+    public int GetTier() 
 	{
 		return tier;
 	}
@@ -54,6 +48,7 @@ public class BallBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+		collidedOnce = true;
 		if (!collision.gameObject.CompareTag("Ball")) return;
 		if (collision.gameObject.GetComponent<BallBehaviour>().GetTier() != tier) return;
 
@@ -61,21 +56,42 @@ public class BallBehaviour : MonoBehaviour
 			CombineBalls(collision.gameObject);
     }
 
-	private void CombineBalls(GameObject otherBall) 
+    private void CombineBalls(GameObject otherBall) 
 	{
-		Vector2 spawnPosition = (transform.position + otherBall.transform.position) / 2;
+		GameAndUIManager.Instance.UpdateScore(ScoreFromTier(tier + 1));
 
-		GameObject newBall = Instantiate(ballObject, spawnPosition, Quaternion.identity);
+        if (tier != 10)
+		{
+			Vector2 spawnPosition = (transform.position + otherBall.transform.position) / 2;
 
-		newBall.GetComponent<BallBehaviour>().SetTier(tier + 1);
+			GameObject newBall = Instantiate(ballObject, spawnPosition, Quaternion.identity);
+
+			newBall.GetComponent<BallBehaviour>().SetTier(tier + 1);
+		}
 
 		Destroy(otherBall);
 		Destroy(gameObject);
+	}
+
+	private int ScoreFromTier(int _tier) 
+	{
+		return (_tier * (_tier + 1)) / 2;
 	}
 
 	public void FreezeBall(bool value) 
 	{
         GetComponent<Rigidbody2D>().bodyType = value ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
         GetComponent<Collider2D>().enabled = !value;
+		if (!value) GetComponent<Rigidbody2D>().angularVelocity = Random.Range(0, 0.01f);
     }
+
+    #region editorUtility
+    [ContextMenu("InitializeFromTier")]
+    void EditorInitalizeTier()
+    {
+        if (generatedTierInfoDict.Count <= 0)
+            InitializeDictionary();
+        InitializeFromTier();
+    }
+    #endregion
 }
