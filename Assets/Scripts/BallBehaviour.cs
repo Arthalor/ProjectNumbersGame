@@ -17,7 +17,7 @@ public class BallBehaviour : MonoBehaviour
 		InitializeFromTier();
 	}
 
-	private void InitializeDictionary()
+    private void InitializeDictionary()
 	{
 		foreach (TierAndInfo tierAndInfo in ballSettings.ballSizeSpriteList) 
 		{

@@ -248,9 +248,51 @@ CompositeCollider2D:
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1771760619}
+    m_ColliderPaths:
+    - - X: -31660336
+        Y: 44757176
+      - X: -43200000
+        Y: 44757176
+      - X: -43200000
+        Y: -46242824
+      - X: -31660336
+        Y: -46242824
+  - m_Collider: {fileID: 1607150806}
+    m_ColliderPaths:
+    - - X: 43199996
+        Y: 44757176
+      - X: 31660332
+        Y: 44757176
+      - X: 31660332
+        Y: -46242824
+      - X: 43199996
+        Y: -46242824
+  - m_Collider: {fileID: 375493672}
+    m_ColliderPaths:
+    - - X: 38400000
+        Y: -35750000
+      - X: -38400000
+        Y: -35750000
+      - X: -38400000
+        Y: -42250000
+      - X: 38400000
+        Y: -42250000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: -3.1660628, y: -4.6242824}
+      - {x: -3.1660042, y: -4.225}
+      - {x: 3.1660333, y: -4.2250295}
+      - {x: 3.1660624, y: -4.6242824}
+      - {x: 4.3199997, y: -4.6242533}
+      - {x: 4.3199706, y: 4.4757175}
+      - {x: 3.1660333, y: 4.4756885}
+      - {x: 3.166004, y: -3.575}
+      - {x: -3.1660337, y: -3.5749705}
+      - {x: -3.1660628, y: 4.4757175}
+      - {x: -4.32, y: 4.4756885}
+      - {x: -4.319971, y: -4.6242824}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -649,7 +691,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
+  m_CompositeOperation: 1
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -3}
   m_SpriteTilingProperty:
@@ -1545,7 +1587,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
+  m_CompositeOperation: 1
   m_CompositeOrder: 0
   m_Offset: {x: 2.9242318, y: -0.05714047}
   m_SpriteTilingProperty:
@@ -1847,7 +1889,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
+  m_CompositeOperation: 1
   m_CompositeOrder: 0
   m_Offset: {x: -2.924232, y: -0.05714047}
   m_SpriteTilingProperty:

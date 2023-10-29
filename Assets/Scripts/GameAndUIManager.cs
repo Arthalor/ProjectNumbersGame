@@ -57,6 +57,7 @@ public class GameAndUIManager : MonoBehaviour
     public void QuitToMenu() 
     {
         Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 
     public void UpdateScore(int value) 
