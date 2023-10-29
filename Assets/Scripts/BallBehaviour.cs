@@ -48,9 +48,10 @@ public class BallBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-		collidedOnce = true;
 		if (!collision.gameObject.CompareTag("Ball")) return;
-		if (collision.gameObject.GetComponent<BallBehaviour>().GetTier() != tier) return;
+
+        collidedOnce = true;
+        if (collision.gameObject.GetComponent<BallBehaviour>().GetTier() != tier) return;
 
 		if (collision.gameObject.GetInstanceID() > GetInstanceID())
 			CombineBalls(collision.gameObject);
