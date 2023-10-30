@@ -8,6 +8,7 @@ public class BallBehaviour : MonoBehaviour
 	[SerializeField] private BallSettings ballSettings;
 	[SerializeField] private float scaleFactor;
 	private bool collidedOnce = false;
+	private bool combined = false;
 
 	private Dictionary<int, SpriteAndSizeInfo> generatedTierInfoDict = new();
 
@@ -53,12 +54,16 @@ public class BallBehaviour : MonoBehaviour
         collidedOnce = true;
         if (collision.gameObject.GetComponent<BallBehaviour>().GetTier() != tier) return;
 
-		if (collision.gameObject.GetInstanceID() > GetInstanceID())
+		if (collision.gameObject.GetInstanceID() < GetInstanceID())
 			CombineBalls(collision.gameObject);
     }
 
     private void CombineBalls(GameObject otherBall) 
 	{
+		if (combined) return; 
+		combined = true;
+		otherBall.GetComponent<BallBehaviour>().SetCombined();
+
 		GameAndUIManager.Instance.UpdateScore(ScoreFromTier(tier + 1));
 
         if (tier != 10)
@@ -72,6 +77,11 @@ public class BallBehaviour : MonoBehaviour
 
 		Destroy(otherBall);
 		Destroy(gameObject);
+	}
+
+	public void SetCombined() 
+	{
+		combined = true;
 	}
 
 	private int ScoreFromTier(int _tier) 
