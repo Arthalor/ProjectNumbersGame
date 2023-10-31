@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
+
 
 public class Settings : MonoBehaviour
 {
