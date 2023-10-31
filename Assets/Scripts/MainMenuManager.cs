@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] private GameObject audioSettingsMenu = default;
+
     public void PlayGame() 
     {
         SceneManager.LoadScene(1);
@@ -13,5 +15,10 @@ public class MainMenuManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void HideSettingsMenus() 
+    {
+        audioSettingsMenu.SetActive(false);
     }
 }
