@@ -62,6 +62,7 @@ public class DropperBehaviour : MonoBehaviour
 
     private void DropBall() 
     {
+        GetComponent<AudioSource>().Play();
         dropBall.GetComponent<BallBehaviour>().FreezeBall(false);
         dropBall = null;
         replenishTimer.Reset();

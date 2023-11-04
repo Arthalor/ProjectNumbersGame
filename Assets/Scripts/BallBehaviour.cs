@@ -29,6 +29,7 @@ public class BallBehaviour : MonoBehaviour
     void InitializeFromTier() 
     {
 		GetComponent<SpriteRenderer>().sprite = generatedTierInfoDict[tier].sprite;
+		GetComponent<AudioSource>().pitch = 1 + (0.1f * tier);
 		transform.localScale = Vector2.one * generatedTierInfoDict[tier].size * scaleFactor;
     }
 
@@ -63,6 +64,7 @@ public class BallBehaviour : MonoBehaviour
 		if (combined) return; 
 		combined = true;
 		otherBall.GetComponent<BallBehaviour>().SetCombined();
+		GetComponent<AudioSource>().Play();
 
 		GameAndUIManager.Instance.UpdateScore(ScoreFromTier(tier + 1));
 
@@ -76,7 +78,15 @@ public class BallBehaviour : MonoBehaviour
 		}
 
 		Destroy(otherBall);
-		Destroy(gameObject);
+		DelayedDestroy(gameObject);
+	}
+
+	private void DelayedDestroy(GameObject gObject) 
+	{
+		gObject.GetComponent<SpriteRenderer>().enabled = false;
+		gObject.GetComponent<Collider2D>().enabled = false;
+		gObject.GetComponent<Rigidbody2D>().simulated = false;
+		Destroy(gObject, 5f);
 	}
 
 	public void SetCombined() 

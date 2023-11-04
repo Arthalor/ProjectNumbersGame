@@ -8,9 +8,11 @@ public class Settings : MonoBehaviour
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private Slider generalVolSlider;
     [SerializeField] private Slider musicVolSlider;
+    [SerializeField] private Slider sfxVolSlider;
 
     private const string generalVolumeKeyAndParameterName = "GeneralVolume";
     private const string musicVolumeKeyAndParameterName = "MusicVolume";
+    private const string sfxVolumeKeyAndParameterName = "SfxVolume";
 
     private void Start()
     {
@@ -21,17 +23,24 @@ public class Settings : MonoBehaviour
 
             int musicVolume = PlayerPrefs.GetInt(musicVolumeKeyAndParameterName);
             musicVolSlider.value = 0.01f * musicVolume + 0.8f;
+
+            int sfxVolume = PlayerPrefs.GetInt(sfxVolumeKeyAndParameterName);
+            musicVolSlider.value = 0.01f * musicVolume + 0.8f;
         }
         else 
         { 
             mixer.GetFloat(generalVolumeKeyAndParameterName, out float generalVolume);
             mixer.GetFloat(musicVolumeKeyAndParameterName, out float musicVolume);
+            mixer.GetFloat(sfxVolumeKeyAndParameterName, out float sfxVolume);
 
             float LerpT = ReverseLerp(generalVolume);
             generalVolSlider.value = LerpT;
 
             LerpT = ReverseLerp(musicVolume);
             musicVolSlider.value = LerpT;
+
+            LerpT = ReverseLerp(sfxVolume);
+            sfxVolSlider.value = LerpT;
         }
     }
 
@@ -43,17 +52,24 @@ public class Settings : MonoBehaviour
 
     public void OnMusicVolumeUpdated(float value) 
     {
-        int decibelValue = Mathf.RoundToInt(Mathf.Lerp(-80f, 20f, value));
-        mixer.SetFloat(musicVolumeKeyAndParameterName, decibelValue);
-        PlayerPrefs.SetInt(musicVolumeKeyAndParameterName, decibelValue);
-        PlayerPrefs.Save();
+        OnSpecificVolumeUpdated(value, musicVolumeKeyAndParameterName);
     }
 
     public void OnGeneralVolumeUpdated(float value) 
     {
+        OnSpecificVolumeUpdated(value, generalVolumeKeyAndParameterName);
+    }
+
+    public void OnSfxVolumeUpdated(float value) 
+    {
+        OnSpecificVolumeUpdated(value, sfxVolumeKeyAndParameterName);
+    }
+
+    public void OnSpecificVolumeUpdated(float value, string volumeKeyAndParameterName) 
+    {
         int decibelValue = Mathf.RoundToInt(Mathf.Lerp(-80f, 20f, value));
-        mixer.SetFloat(generalVolumeKeyAndParameterName, decibelValue);
-        PlayerPrefs.SetInt(generalVolumeKeyAndParameterName, decibelValue);
+        mixer.SetFloat(volumeKeyAndParameterName, decibelValue);
+        PlayerPrefs.SetInt(volumeKeyAndParameterName, decibelValue);
         PlayerPrefs.Save();
     }
 }
