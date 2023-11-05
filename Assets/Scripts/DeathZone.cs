@@ -13,6 +13,7 @@ public class DeathZone : MonoBehaviour
         {
             if (ball.HasCollidedAtLeastOnce())
             {
+                collision.GetComponent<SpriteRenderer>().color = Color.red;
                 deathEvent?.Invoke();
             }
         }
